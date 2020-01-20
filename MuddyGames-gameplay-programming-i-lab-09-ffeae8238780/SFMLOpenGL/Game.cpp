@@ -2,7 +2,7 @@
 
 static bool flip;
 
-Game::Game() : window(VideoMode(800, 600), "OpenGL Cube VBO")
+Game::Game() : window(sf::VideoMode(800, 600), "OpenGL Cube VBO")
 {
 }
 
@@ -13,15 +13,15 @@ void Game::run()
 
 	initialize();
 
-	Event event;
+	sf::Event event;
 
 	while (isRunning) {
 
-		cout << "Game running..." << endl;
+		std::cout << "Game running..." << std::endl;
 
 		while (window.pollEvent(event))
 		{
-			if (event.type == Event::Closed)
+			if (event.type == sf::Event::Closed)
 			{
 				isRunning = false;
 			}
@@ -38,8 +38,8 @@ typedef struct
 	float color[3];
 } Vertex;
 
-Vertex vertex[6];
-GLubyte triangles[6];
+Vertex vertex[8];
+GLubyte triangles[36];
 
 /* Variable to hold the VBO identifier */
 GLuint vbo[1];
@@ -53,57 +53,80 @@ void Game::initialize()
 
 	/* Vertices counter-clockwise winding */
 
-	vertex[0].coordinate[0] = -0.5f;
-	vertex[0].coordinate[1] = -0.5f;
-	vertex[0].coordinate[2] = 0.0f;
+	vertex[0].coordinate[0] = -1.0f;
+	vertex[0].coordinate[1] = -1.0f;
+	vertex[0].coordinate[2] = 1.0f;
 
-	vertex[1].coordinate[0] = -0.5f;
-	vertex[1].coordinate[1] = 0.5f;
-	vertex[1].coordinate[2] = 0.0f;
+	vertex[1].coordinate[0] = 1.0f;
+	vertex[1].coordinate[1] = -1.0f;
+	vertex[1].coordinate[2] = 1.0f;
 
-	vertex[2].coordinate[0] = 0.5f;
-	vertex[2].coordinate[1] = 0.5f;
-	vertex[2].coordinate[2] = 0.0f;
+	vertex[2].coordinate[0] = 1.0f;
+	vertex[2].coordinate[1] = 1.0f;
+	vertex[2].coordinate[2] = 1.0f;
 
-	//vertex[3].coordinate[0] = 0.5f; 
-	//vertex[3].coordinate[1] = 0.5f;  
-	//vertex[3].coordinate[2] = 0.0f;
+	vertex[3].coordinate[0] = -1.0f; 
+	vertex[3].coordinate[1] = 1.0f;  
+	vertex[3].coordinate[2] = 1.0f;
 
-	//vertex[4].coordinate[0] = 0.5f; 
-	//vertex[4].coordinate[1] = -0.5f;  
-	//vertex[4].coordinate[2] = 0.0f;
+	vertex[4].coordinate[0] = -1.0f; 
+	vertex[4].coordinate[1] = -1.0f;  
+	vertex[4].coordinate[2] = -1.0f;
 
-	//vertex[5].coordinate[0] = -0.5f; 
-	//vertex[5].coordinate[1] = -0.5f;  
-	//vertex[5].coordinate[2] = 0.0f;
+	vertex[5].coordinate[0] = 1.0f; 
+	vertex[5].coordinate[1] = -1.0f;  
+	vertex[5].coordinate[2] = -1.0f;
 
-	vertex[0].color[0] = 0.1f;
-	vertex[0].color[1] = 1.0f;
+	vertex[6].coordinate[0] = 1.0f;
+	vertex[6].coordinate[1] = 1.0f;
+	vertex[6].coordinate[2] = -1.0f;
+
+	vertex[7].coordinate[0] = -1.0f;
+	vertex[7].coordinate[1] = 1.0f;
+	vertex[7].coordinate[2] = -1.0f;
+
+
+
+
+	vertex[0].color[0] = 1.0f;
+	vertex[0].color[1] = 0.3f;
 	vertex[0].color[2] = 0.0f;
 
-	vertex[1].color[0] = 0.2f;
-	vertex[1].color[1] = 1.0f;
-	vertex[1].color[2] = 0.0f;
+	vertex[1].color[0] = 0.7f;
+	vertex[1].color[1] = 0.0f;
+	vertex[1].color[2] = 0.5f;
 
-	vertex[2].color[0] = 0.3f;
-	vertex[2].color[1] = 1.0f;
-	vertex[2].color[2] = 0.0f;
+	vertex[2].color[0] = 0.0f;
+	vertex[2].color[1] = 0.5f;
+	vertex[2].color[2] = 0.5f;
 
 	vertex[3].color[0] = 0.4f;
 	vertex[3].color[1] = 1.0f;
 	vertex[3].color[2] = 0.0f;
 
 	vertex[4].color[0] = 0.5f;
-	vertex[4].color[1] = 1.0f;
+	vertex[4].color[1] = 0.5f;
 	vertex[4].color[2] = 0.0f;
 
-	vertex[5].color[0] = 0.6f;
-	vertex[5].color[1] = 1.0f;
-	vertex[5].color[2] = 0.0f;
+	vertex[5].color[0] = 0.2f;
+	vertex[5].color[1] = 0.0f;
+	vertex[5].color[2] = 0.6f;
 
 
-	triangles[0] = 0;   triangles[1] = 1;   triangles[2] = 2;
-	triangles[3] = 3;   triangles[4] = 4;   triangles[5] = 5;
+	triangles[0] = 0;   triangles[1] = 1;	triangles[2] = 1;
+	triangles[3] = 2;   triangles[4] = 3;	triangles[5] = 0;
+	triangles[6] = 3;	triangles[7] = 7;	triangles[8] = 4;
+	triangles[9] = 4;   triangles[10] = 0;	triangles[11] = 3;
+	triangles[12] = 4;   triangles[13] = 7;	triangles[14] = 6;
+	triangles[15] = 6;	triangles[16] = 5;	triangles[17] = 4;
+	triangles[18] = 6;   triangles[19] = 2;	triangles[20] = 1;
+	triangles[21] = 1;	triangles[22] = 5;	triangles[23] = 6;
+	triangles[24] = 6;	triangles[25] = 7;	triangles[26] = 3;
+	triangles[27] = 3;	triangles[28] = 2;	triangles[29] = 6;
+	triangles[30] = 0;	triangles[31] = 4;	triangles[32] = 5;
+	triangles[33] = 5;	triangles[34] = 1;	triangles[35] = 0;
+
+
 
 	/* Create a new VBO using VBO id */
 	glGenBuffers(1, vbo);
@@ -152,12 +175,12 @@ void Game::update()
 	vertex[0].coordinate[1] += -0.0001f;
 	vertex[0].coordinate[2] += -0.0001f;
 
-	cout << "Update up" << endl;
+	std::cout << "Update up" << std::endl;
 }
 
 void Game::render()
 {
-	cout << "Drawing" << endl;
+	std::cout << "Drawing" << std::endl;
 
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -190,7 +213,7 @@ void Game::render()
 
 void Game::unload()
 {
-	cout << "Cleaning up" << endl;
+	std::cout << "Cleaning up" << std::endl;
 
 	glDeleteBuffers(1, vbo);
 }
