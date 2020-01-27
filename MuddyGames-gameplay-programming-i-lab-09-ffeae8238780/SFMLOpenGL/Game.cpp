@@ -119,7 +119,7 @@ void Game::initialize()
 	vertex[5].color[2] = 0.6f;
 
 
-	triangles[0] = 0;   triangles[1] = 1;	triangles[2] = 1;
+	triangles[0] = 0;   triangles[1] = 1;	triangles[2] = 2;
 	triangles[3] = 2;   triangles[4] = 3;	triangles[5] = 0;
 	triangles[6] = 3;	triangles[7] = 7;	triangles[8] = 4;
 	triangles[9] = 4;   triangles[10] = 0;	triangles[11] = 3;
@@ -157,16 +157,6 @@ void Game::update()
 	if (elapsed.asSeconds() >= 1.0f / 60.0f)
 	{
 		clock.restart();
-
-
-		////Change vertex data
-		//vertex[0].coordinate[0] += -0.0001f;
-		//vertex[0].coordinate[1] += -0.0001f;
-		//vertex[0].coordinate[2] += -0.0001f;
-
-
-
-
 
 		//Rotate Right
 		if ((sf::Keyboard::isKeyPressed(sf::Keyboard::Right)))
@@ -222,7 +212,7 @@ void Game::update()
 		//Increase Scale
 		if ((sf::Keyboard::isKeyPressed(sf::Keyboard::Equal)))
 		{
-			for (int i = 0; i < 8; i += 3)
+			for (int i = 0; i < 8; i++)
 			{
 				Vector3 vector{ vertex[i].coordinate[0], vertex[i].coordinate[1], vertex[i].coordinate[2] };
 
@@ -235,7 +225,7 @@ void Game::update()
 		//Decrease Scale
 		if ((sf::Keyboard::isKeyPressed(sf::Keyboard::Dash)))
 		{
-			for (int i = 0; i < 8; i += 3)
+			for (int i = 0; i < 8; i++)
 			{
 				Vector3 vector{ vertex[i].coordinate[0], vertex[i].coordinate[1], vertex[i].coordinate[2] };
 
@@ -251,7 +241,7 @@ void Game::update()
 		//Translate +
 		if ((sf::Keyboard::isKeyPressed(sf::Keyboard::Period)))
 		{
-			for (int i = 0; i < 8; i += 3)
+			for (int i = 0; i < 8; i++)
 			{
 				Vector3 vector{ vertex[i].coordinate[0], vertex[i].coordinate[1], vertex[i].coordinate[2] };
 
@@ -266,7 +256,7 @@ void Game::update()
 		//Translate -
 		if ((sf::Keyboard::isKeyPressed(sf::Keyboard::Comma)))
 		{
-			for (int i = 0; i < 8; i += 3)
+			for (int i = 0; i < 8; i++)
 			{
 				Vector3 vector{ vertex[i].coordinate[0], vertex[i].coordinate[1], vertex[i].coordinate[2] };
 
