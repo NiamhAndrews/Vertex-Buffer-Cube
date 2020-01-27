@@ -94,7 +94,7 @@ void Game::initialize()
 
 
 
-	vertex[0].color[0] = 1.0f;
+	vertex[0].color[0] = 0.9f;
 	vertex[0].color[1] = 0.3f;
 	vertex[0].color[2] = 0.0f;
 
@@ -103,20 +103,28 @@ void Game::initialize()
 	vertex[1].color[2] = 0.5f;
 
 	vertex[2].color[0] = 0.0f;
-	vertex[2].color[1] = 0.5f;
-	vertex[2].color[2] = 0.5f;
+	vertex[2].color[1] = 0.6f;
+	vertex[2].color[2] = 0.6f;
 
 	vertex[3].color[0] = 0.4f;
-	vertex[3].color[1] = 1.0f;
+	vertex[3].color[1] = 0.9f;
 	vertex[3].color[2] = 0.0f;
 
-	vertex[4].color[0] = 0.5f;
-	vertex[4].color[1] = 0.5f;
+	vertex[4].color[0] = 0.6f;
+	vertex[4].color[1] = 0.6f;
 	vertex[4].color[2] = 0.0f;
 
-	vertex[5].color[0] = 0.2f;
+	vertex[5].color[0] = 0.4f;
 	vertex[5].color[1] = 0.0f;
-	vertex[5].color[2] = 0.6f;
+	vertex[5].color[2] = 0.7f;
+
+	vertex[6].color[0] = 0.0f;
+	vertex[6].color[1] = 0.0f;
+	vertex[6].color[2] = 0.9f;
+
+	vertex[7].color[0] = 0.7f;
+	vertex[7].color[1] = 0.3f;
+	vertex[7].color[2] = 0.4f;
 
 
 	triangles[0] = 0;   triangles[1] = 1;	triangles[2] = 2;
@@ -275,17 +283,6 @@ void Game::update()
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 		
 
 
@@ -313,12 +310,12 @@ void Game::render()
 	glEnableClientState(GL_COLOR_ARRAY);
 
 
-	glColorPointer(3, GL_FLOAT, sizeof(Vertex), (char*)NULL + 12);
+	glColorPointer(3, GL_FLOAT, sizeof(Vertex), (float*)NULL + 3);
 
 	/*	Draw Triangle from VBO	(set where to start from as VBO can contain 
 		model compoents that are and are not to be drawn )	*/
-	glVertexPointer(3, GL_FLOAT, sizeof(Vertex), (char*)NULL + 0);
-	glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_BYTE, (char*)NULL + 0);
+	glVertexPointer(3, GL_FLOAT, sizeof(Vertex), (float*)NULL + 0);
+	glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_BYTE, (float*)NULL + 0);
 
 	glDisableClientState(GL_VERTEX_ARRAY);
 	glDisableClientState(GL_COLOR_ARRAY);
