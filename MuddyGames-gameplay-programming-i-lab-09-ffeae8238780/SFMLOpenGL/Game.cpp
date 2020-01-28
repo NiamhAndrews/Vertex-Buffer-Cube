@@ -1,4 +1,11 @@
+//C00242944
+//Niamh Andrews
+//Helped by Micheal Rainsford Ryan
+
 #include <Game.h>
+
+
+
 
 static bool flip;
 
@@ -125,6 +132,7 @@ void Game::initialize()
 	vertex[7].color[0] = 0.7f;
 	vertex[7].color[1] = 0.3f;
 	vertex[7].color[2] = 0.4f;
+
 
 
 	triangles[0] = 0;   triangles[1] = 1;	triangles[2] = 2;
@@ -304,18 +312,43 @@ void Game::render()
 
 	/*	As the data positions will be updated by the this program on the
 		CPU bind the updated data to the GPU for drawing	*/
+
+
+
+
+
+
+
+
+
+
+		
+// --------------------------------------------------------------------------------------------------  stride (offset)
+
+
+
+													//Passing in vertex (data)
 	glBufferData(GL_ARRAY_BUFFER, sizeof(Vertex) * 36, vertex, GL_STATIC_DRAW);
 
 	glEnableClientState(GL_VERTEX_ARRAY);
 	glEnableClientState(GL_COLOR_ARRAY);
+	
 
 
-	glColorPointer(3, GL_FLOAT, sizeof(Vertex), (float*)NULL + 3);
+//how many colour channels to read   //Size of each	   //Amount to skip		//offset from start point (move pointer to colours, not co-ords)
+	glColorPointer(3,                 GL_FLOAT,          sizeof(Vertex),    (float*)NULL + 3);
 
-	/*	Draw Triangle from VBO	(set where to start from as VBO can contain 
-		model compoents that are and are not to be drawn )	*/
-	glVertexPointer(3, GL_FLOAT, sizeof(Vertex), (float*)NULL + 0);
-	glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_BYTE, (float*)NULL + 0);
+
+//How many points to read    //Size of each point     //Amount to skip          //No offset needed, start of array is already points
+	glVertexPointer(3,       GL_FLOAT,                sizeof(Vertex),           (float*)NULL + 0);
+
+
+	glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_BYTE, (float*)NULL + 0); //Draw both points and colours
+
+
+
+
+
 
 	glDisableClientState(GL_VERTEX_ARRAY);
 	glDisableClientState(GL_COLOR_ARRAY);
