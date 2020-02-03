@@ -336,14 +336,15 @@ void Game::render()
 
 
 //how many colour channels to read   //Size of each	   //Amount to skip		//offset from start point (move pointer to colours, not co-ords)
-	glColorPointer(3,                 GL_FLOAT,          sizeof(Vertex),    (float*)NULL + 3);
+	glColorPointer(   3,             GL_FLOAT,         sizeof(Vertex),      (float*)NULL + 3);
 
 
 //How many points to read    //Size of each point     //Amount to skip          //No offset needed, start of array is already points
-	glVertexPointer(3,       GL_FLOAT,                sizeof(Vertex),           (float*)NULL + 0);
+	glVertexPointer(  3,     GL_FLOAT,                sizeof(Vertex),           (float*)NULL + 0);
 
 
-	glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_BYTE, (float*)NULL + 0); //Draw both points and colours
+//Draw both points and colours
+	glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_BYTE, (float*)NULL + 0); 
 
 
 
